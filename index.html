@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae - Premium Professional</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --tertiary: #10b981;
+            --accent: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-bg: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #1e293b;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Parallax Effect */
+        .parallax-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-name {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+        }
+
+        .hero-desc {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .btn-luxury {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            padding: 0.875rem 2.5rem;
+            font-weight: 600;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+
+        .btn-luxury:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .btn-luxury-outline {
+            background: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            padding: 0.75rem 2.3rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+
+        .btn-luxury-outline:hover {
+            background: #ffffff;
+            color: #667eea;
+            text-decoration: none;
+            transform: scale(1.05);
+        }
+
+        /* Parallax Sections */
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .parallax-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            pointer-events: none;
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #667eea, #ec4899, transparent);
+        }
+
+        .card-luxury {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-luxury::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            transition: all 0.5s ease;
+            pointer-events: none;
+        }
+
+        .card-luxury:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #667eea;
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.25);
+        }
+
+        .card-luxury:hover::before {
+            top: 0;
+            right: 0;
+        }
+
+        .card-title {
+            background: linear-gradient(135deg, #667eea 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .card-subtitle {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .card-text {
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+            border: 1.5px solid #667eea;
+            color: #667eea;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            margin: 0.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background: linear-gradient(135deg, #667eea 0%, #ec4899 100%);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .achievement-item {
+            padding: 1.5rem;
+            border-left: 4px solid #667eea;
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-item:hover {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.15) 0%, transparent 100%);
+            transform: translateX(10px);
+        }
+
+        .achievement-title {
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .navbar-luxury {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #667eea;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1);
+        }
+
+        .navbar-luxury .nav-link {
+            color: #1e293b !important;
+            margin: 0 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-luxury .nav-link:hover,
+        .navbar-luxury .nav-link.active {
+            color: #667eea !important;
+        }
+
+        .navbar-luxury .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #ec4899);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-luxury .nav-link:hover::after,
+        .navbar-luxury .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        .logo {
+            background: linear-gradient(135deg, #667eea 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .social-icons a {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin: 0 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #ec4899;
+            transform: translateY(-5px) scale(1.2);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
+            border-top: none;
+            padding: 3rem 0 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        footer .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        footer .footer-link:hover {
+            color: #fbbf24;
+            text-decoration: underline;
+        }
+
+        .progress-bar-luxury {
+            background: linear-gradient(90deg, #667eea 0%, #ec4899 100%);
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #667eea 0%, rgba(102, 126, 234, 0) 100%);
+        }
+
+        @media (max-width: 768px) {
+            .experience-timeline::before {
+                left: 20px;
+            }
+
+            .hero-name {
+                font-size: 2rem;
+            }
+
+            .hero-title {
+                font-size: 1rem;
+            }
+
+            .parallax-section {
+                padding: 60px 0;
+            }
+
+            .navbar-luxury .nav-link {
+                margin: 0.5rem 0;
+            }
+
+            .btn-luxury,
+            .btn-luxury-outline {
+                display: block;
+                width: 100%;
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .container-luxury {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .parallax-content {
+            text-align: center;
+        }
+
+        .parallax-content .row {
+            justify-content: center;
+        }
+
+        .card-luxury {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-luxury">
+        <div class="container-luxury">
+            <a class="navbar-brand logo" href="#home">
+                <i class="fas fa-crown"></i> CV PREMIUM
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span style="color: #667eea;">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Tentang Saya</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Pengalaman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Keahlian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Parallax -->
+    <section id="home" class="parallax-hero">
+        <div class="hero-content">
+            <h1 class="hero-name">SYAHDAN MASYHURI</h1>
+            <p class="hero-title">Professional Software Developer & IT DevSecOps</p>
+            <p class="hero-desc">
+                Menciptakan pengalaman digital yang luar biasa dengan desain inovatif dan teknologi terkini
+            </p>
+            <div>
+                <a href="#contact" class="btn-luxury">Hubungi Saya</a>
+                <a href="#portfolio" class="btn-luxury-outline">Lihat Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="parallax-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+        <div class="container-luxury parallax-content">
+            <h2 class="section-title">Tentang Saya</h2>
+            <div class="row align-items-center justify-content-center g-5">
+                <div class="col-lg-4 text-center">
+                    <div style="width: 280px; height: 280px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 3px solid #667eea; position: relative; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop" alt="Programming" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-8 text-center">
+                    <p class="card-text" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; color: #1e293b;">
+                        Saya adalah profesional berpengalaman dengan passion dalam menciptakan solusi digital yang inovatif dan berdampak. Dengan latar belakang yang kuat dalam desain dan pengembangan, saya berkomitmen untuk memberikan hasil yang melampaui ekspektasi klien dan perusahaan.
+                    </p>
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-sm-6">
+                            <div class="card-luxury">
+                                <p style="font-size: 2rem; background: linear-gradient(135deg, #667eea 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0;">
+                                    <i class="fas fa-briefcase"></i> 10+
+                                </p>
+                                <p class="card-subtitle">Tahun Pengalaman</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card-luxury">
+                                <p style="font-size: 2rem; background: linear-gradient(135deg, #667eea 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0;">
+                                    <i class="fas fa-project-diagram"></i> 10+
+                                </p>
+                                <p class="card-subtitle">Proyek Sukses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section with Parallax -->
+    <section id="experience" class="parallax-section" style="background: linear-gradient(135deg, #ec4899 0%, #f093fb 50%, #667eea 100%);">
+        <div class="container-luxury parallax-content">
+            <h2 class="section-title">Pengalaman Kerja</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card-luxury fade-in">
+                        <div style="margin-bottom: 1rem;">
+                            <span style="color: #667eea; font-weight: 600; font-size: 0.9rem;">2025 - Sekarang</span>
+                        </div>
+                        <h4 class="card-title">DevSecOps Consultant</h4>
+                        <p class="card-subtitle">PT. ITSEC Asia</p>
+                        <p class="card-text">
+                            Mengintegrasikan keamanan (security) ke dalam seluruh siklus pengembangan dan operasional perangkat lunak, mulai dari desain, CI/CD pipeline, hingga deployment di lingkungan produksi. Serta memberikan rekomendasi, audit, dan implementasi praktik keamanan untuk memastikan sistem tetap aman, patuh standar, dan tahan terhadap ancaman siber tanpa menghambat kecepatan pengembangan.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card-luxury fade-in">
+                        <div style="margin-bottom: 1rem;">
+                            <span style="color: #667eea; font-weight: 600; font-size: 0.9rem;">2025 - 2025</span>
+                        </div>
+                        <h4 class="card-title">Backend Developer</h4>
+                        <p class="card-subtitle">PT. Komodo Legends Interaktif</p>
+                        <p class="card-text">
+                            Membangun dan memelihara sistem server-side yang mendukung gameplay, seperti manajemen data pemain, matchmaking, leaderboard, dan sinkronisasi real-time. Serta memastikan performa, keamanan, dan skalabilitas backend agar game dapat berjalan stabil meskipun digunakan oleh banyak pemain secara bersamaan.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card-luxury fade-in">
+                        <div style="margin-bottom: 1rem;">
+                            <span style="color: #667eea; font-weight: 600; font-size: 0.9rem;">2023 - 2024</span>
+                        </div>
+                        <h4 class="card-title">Senior Software Developer</h4>
+                        <p class="card-subtitle">PT. Media Info Groep</p>
+                        <p class="card-text">
+                            Merancang dan mengembangkan sistem perangkat lunak yang kompleks, menulis kode berkualitas tinggi, serta memastikan arsitektur aplikasi scalable, efisien, dan maintainable. Juga membimbing developer lain, melakukan code review, dan berkontribusi dalam pengambilan keputusan teknis untuk mendukung keberhasilan proyek.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card-luxury fade-in">
+                        <div style="margin-bottom: 1rem;">
+                            <span style="color: #667eea; font-weight: 600; font-size: 0.9rem;">2022 - 2023</span>
+                        </div>
+                        <h4 class="card-title">DevOps Engineer</h4>
+                        <p class="card-subtitle">PT. Prospero Optima Solusindo</p>
+                        <p class="card-text">
+                            Menjembatani pengembangan software dan operasional IT dengan mengotomatisasi proses build, testing, deployment, serta memastikan sistem berjalan stabil, scalable, dan aman di lingkungan produksi. Juga mengelola infrastruktur (sering berbasis cloud), monitoring, CI/CD pipeline, serta menangani incident untuk menjaga reliabilitas layanan.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card-luxury fade-in">
+                        <div style="margin-bottom: 1rem;">
+                            <span style="color: #667eea; font-weight: 600; font-size: 0.9rem;">2020 - 2022</span>
+                        </div>
+                        <h4 class="card-title">Lead Software Developer</h4>
+                        <p class="card-subtitle">PT. Spentera</p>
+                        <p class="card-text">
+                            Memimpin tim RnD dalam merancang, mengembangkan, dan memastikan kualitas aplikasi atau sistem yang dibangun. Dan juga mengarahkan teknis, melakukan code review, serta berkoordinasi dengan tim lain untuk memastikan proyek berjalan sesuai target.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card-luxury fade-in">
+                        <div style="margin-bottom: 1rem;">
+                            <span style="color: #667eea; font-weight: 600; font-size: 0.9rem;">2015 - 2016</span>
+                        </div>
+                        <h4 class="card-title">Engineer</h4>
+                        <p class="card-subtitle">PT. Kirana Sakti Komputindo</p>
+                        <p class="card-text">
+                            Bertanggung jawab merancang, membangun, dan memelihara sistem teknologi informasi seperti jaringan, server, dan aplikasi agar berjalan stabil dan aman. Serta menangani troubleshooting serta mengoptimalkan performa sistem untuk mendukung kebutuhan operasional perusahaan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="parallax-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+        <div class="container-luxury parallax-content">
+            <h2 class="section-title">Keahlian</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 180px; background: linear-gradient(135deg, #667eea 0%, #ec4899 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 3.5rem; color: #ffffff;">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h4 class="card-title">
+                            <i class="fas fa-code"></i> Technical Skills
+                        </h4>
+                        <div style="margin-top: 1.5rem;">
+                            <span class="skill-badge">HTML/CSS</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">React</span>
+                            <span class="skill-badge">Bootstrap</span>
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">SQL</span>
+                            <span class="skill-badge">Node.js</span>
+                            <span class="skill-badge">Git</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 180px; border-radius: 15px; overflow: hidden; margin-bottom: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" alt="Design Skills" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">
+                            <i class="fas fa-paint-brush"></i> Design Skills
+                        </h4>
+                        <div style="margin-top: 1.5rem;">
+                            <span class="skill-badge">UI Design</span>
+                            <span class="skill-badge">UX Design</span>
+                            <span class="skill-badge">Figma</span>
+                            <span class="skill-badge">Adobe XD</span>
+                            <span class="skill-badge">Photoshop</span>
+                            <span class="skill-badge">Wireframing</span>
+                            <span class="skill-badge">Prototyping</span>
+                            <span class="skill-badge">Branding</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-luxury">
+                        <h4 class="card-title">
+                            <i class="fas fa-chart-line"></i> Proficiencies
+                        </h4>
+                        <div style="margin-top: 1.5rem;">
+                            <div style="margin-bottom: 1.2rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span class="card-text">Web Design</span>
+                                    <span style="color: #667eea;">90%</span>
+                                </div>
+                                <div style="background: rgba(102, 126, 234, 0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+                                    <div class="progress-bar-luxury" style="width: 90%; height: 100%;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1.2rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span class="card-text">Development</span>
+                                    <span style="color: #667eea;">85%</span>
+                                </div>
+                                <div style="background: rgba(102, 126, 234, 0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+                                    <div class="progress-bar-luxury" style="width: 85%; height: 100%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span class="card-text">Problem Solving</span>
+                                    <span style="color: #667eea;">95%</span>
+                                </div>
+                                <div style="background: rgba(102, 126, 234, 0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+                                    <div class="progress-bar-luxury" style="width: 95%; height: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-luxury">
+                        <h4 class="card-title">
+                            <i class="fas fa-star"></i> Pencapaian
+                        </h4>
+                        <div style="margin-top: 1rem;">
+                            <div class="achievement-item">
+                                <div class="achievement-title">Award 2023</div>
+                                <p class="card-text" style="font-size: 0.9rem; margin: 0;">Best Digital Design</p>
+                            </div>
+                            <div class="achievement-item">
+                                <div class="achievement-title">Certified Professional</div>
+                                <p class="card-text" style="font-size: 0.9rem; margin: 0;">UX Design Certificate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="parallax-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+        <div class="container-luxury parallax-content">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="Project Alpha" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">Project Alpha</h4>
+                        <p class="card-text">
+                            Website e-commerce dengan fitur advanced dan interface yang stunning
+                        </p>
+                        <p style="color: #667eea; font-size: 0.9rem; margin-top: 1rem;">
+                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">React</span>
+                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">Node.js</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1512941691920-25bda36dc643?w=400&h=300&fit=crop" alt="Project Beta" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">Project Beta</h4>
+                        <p class="card-text">
+                            Aplikasi mobile untuk manajemen finansial dengan UX yang intuitif
+                        </p>
+                        <p style="color: #667eea; font-size: 0.9rem; margin-top: 1rem;">
+                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">Flutter</span>
+                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">Firebase</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" alt="Project Gamma" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">Project Gamma</h4>
+                        <p class="card-text">
+                            Redesign brand identity dengan konsep modern dan elegan
+                        </p>
+                        <p style="color: #667eea; font-size: 0.9rem; margin-top: 1rem;">
+                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">Branding</span>
+                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">Design</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+                        </div>
+                        <h4 class="card-title">Project Gamma</h4>
+                        <p class="card-text">
+                            Redesign brand identity dengan konsep modern dan elegan
+                        </p>
+                        <p style="color: #667eea; font-size: 0.9rem; margin-top: 1rem;">
+                            <span class="skill-badge" style="font-size: 0.8rem;">Branding</span>
+                            <span class="skill-badge" style="font-size: 0.8rem;">Design</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="parallax-section" style="background: linear-gradient(135deg, #ec4899 0%, #f093fb 50%, #667eea 100%);">
+        <div class="container-luxury parallax-content">
+            <h2 class="section-title">Hubungi Saya</h2>
+            <div class="row g-4 align-items-center justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card-luxury">
+                        <h4 class="card-title">
+                            <i class="fas fa-info-circle"></i> Informasi Kontak
+                        </h4>
+                        <div style="margin-top: 2rem;">
+                            <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(102, 126, 234, 0.2);">
+                                <p style="color: #667eea; font-weight: 600; margin-bottom: 0.5rem;">
+                                    <i class="fas fa-phone"></i> Telepon
+                                </p>
+                                <p class="card-text">+62 812 3456 7890</p>
+                            </div>
+                            <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(102, 126, 234, 0.2);">
+                                <p style="color: #667eea; font-weight: 600; margin-bottom: 0.5rem;">
+                                    <i class="fas fa-envelope"></i> Email
+                                </p>
+                                <p class="card-text">nama@email.com</p>
+                            </div>
+                            <div style="margin-bottom: 2rem;">
+                                <p style="color: #667eea; font-weight: 600; margin-bottom: 0.5rem;">
+                                    <i class="fas fa-map-marker-alt"></i> Lokasi
+                                </p>
+                                <p class="card-text">Jakarta, Indonesia</p>
+                            </div>
+                            <div style="margin-top: 2rem;">
+                                <p style="color: #667eea; font-weight: 600; margin-bottom: 1rem;">Ikuti Saya</p>
+                                <div class="social-icons">
+                                    <a href="#" title="LinkedIn">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="#" title="GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" title="Twitter">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" title="Instagram">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card-luxury">
+                        <h4 class="card-title">
+                            <i class="fas fa-message"></i> Kirim Pesan
+                        </h4>
+                        <form style="margin-top: 2rem;">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Nama Anda" style="background: rgba(102, 126, 234, 0.1); border: 1.5px solid #667eea; color: #1e293b; padding: 0.8rem; border-radius: 10px;" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Email Anda" style="background: rgba(102, 126, 234, 0.1); border: 1.5px solid #667eea; color: #1e293b; padding: 0.8rem; border-radius: 10px;" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="4" placeholder="Pesan Anda" style="background: rgba(102, 126, 234, 0.1); border: 1.5px solid #667eea; color: #1e293b; padding: 0.8rem; border-radius: 10px; resize: none;" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-luxury" style="width: 100%;">
+                                <i class="fas fa-paper-plane"></i> Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-luxury">
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <h5 style="color: #ffffff; margin-bottom: 1.5rem;">
+                        <i class="fas fa-code"></i> CV COLORFUL
+                    </h5>
+                    <p class="card-text" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
+                        Profesional berpengalaman dalam menciptakan solusi digital yang inovatif dan modern.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5 style="color: #ffffff; margin-bottom: 1.5rem;">Quick Links</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#home" class="footer-link">Beranda</a></li>
+                        <li><a href="#about" class="footer-link">Tentang</a></li>
+                        <li><a href="#portfolio" class="footer-link">Portfolio</a></li>
+                        <li><a href="#contact" class="footer-link">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 style="color: #667eea; margin-bottom: 1.5rem;">Follow Me</h5>
+                    <div class="social-icons">
+                        <a href="#">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color: rgba(102, 126, 234, 0.2);">
+            <div class="text-center py-3">
+                <p style="margin: 0; color: #888; font-size: 0.9rem;">
+                    &copy; 2024 CV Premium. All rights reserved. Designed with <span style="color: #667eea;">♥</span> for You.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(nav => {
+                        nav.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Parallax effect enhancement for mobile
+        if (window.innerWidth <= 768) {
+            document.querySelectorAll('.parallax-section').forEach(section => {
+                section.style.backgroundAttachment = 'scroll';
+            });
+        }
+
+        // Form submission handler
+        document.querySelector('form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih telah mengirim pesan! Saya akan segera menghubungi Anda.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -439,6 +439,102 @@
         .card-luxury {
             text-align: center;
         }
+
+        /* PDF Download Button Styling */
+        .btn-download-pdf {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
+            color: #ffffff;
+            border: none;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            cursor: pointer;
+        }
+
+        .btn-download-pdf::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.4s ease;
+            z-index: 1;
+        }
+
+        .btn-download-pdf:hover::before {
+            left: 100%;
+        }
+
+        .btn-download-pdf:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.5);
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .btn-download-pdf span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-download-pdf i {
+            margin-right: 0.5rem;
+            animation: downloadBounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes downloadBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        .btn-download-pdf:hover i {
+            animation: downloadRotate 0.6s ease-in-out;
+        }
+
+        @keyframes downloadRotate {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(8px) rotate(180deg); }
+            100% { transform: translateY(0); }
+        }
+
+        #downloadCVBtn {
+            transition: all 0.3s ease;
+        }
+
+        #downloadCVBtn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Loading state */
+        .pdf-loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .spinner-pdf {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -473,6 +569,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Kontak</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="downloadCVBtn" style="color: #667eea !important; font-weight: 700 !important;">
+                            <i class="fas fa-download"></i> Download CV
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -489,6 +590,9 @@
             <div>
                 <a href="#contact" class="btn-luxury">Hubungi Saya</a>
                 <a href="#portfolio" class="btn-luxury-outline">Lihat Portfolio</a>
+                <button class="btn-download-pdf" id="heroDownloadCVBtn" type="button">
+                    <span><i class="fas fa-download"></i> Download CV (PDF)</span>
+                </button>
             </div>
         </div>
     </section>
@@ -642,17 +746,16 @@
                             <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" alt="Design Skills" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <h4 class="card-title">
-                            <i class="fas fa-paint-brush"></i> Design Skills
+                            <i class="fas fa-paint-brush"></i> DevOps Tools
                         </h4>
                         <div style="margin-top: 1.5rem;">
-                            <span class="skill-badge">UI Design</span>
-                            <span class="skill-badge">UX Design</span>
-                            <span class="skill-badge">Figma</span>
-                            <span class="skill-badge">Adobe XD</span>
-                            <span class="skill-badge">Photoshop</span>
-                            <span class="skill-badge">Wireframing</span>
-                            <span class="skill-badge">Prototyping</span>
-                            <span class="skill-badge">Branding</span>
+                            <span class="skill-badge">Docker</span>
+                            <span class="skill-badge">Kubernetes</span>
+                            <span class="skill-badge">Vagrant</span>
+                            <span class="skill-badge">Jenkins</span>
+                            <span class="skill-badge">Ansible</span>
+                            <span class="skill-badge">AWS</span>
+                            <span class="skill-badge">Alibaba Cloud</span>
                         </div>
                     </div>
                 </div>
@@ -903,22 +1006,30 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
     <script>
-        // Smooth scroll navigation
+        // ============================
+        // SMOOTH SCROLL NAVIGATION
+        // ============================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Update active nav link
-                    document.querySelectorAll('.nav-link').forEach(nav => {
-                        nav.classList.remove('active');
-                    });
-                    this.classList.add('active');
+                const href = this.getAttribute('href');
+                if (href !== '#' && !this.id.includes('Download') && !this.id.includes('download')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        // Update active nav link
+                        document.querySelectorAll('.nav-link').forEach(nav => {
+                            nav.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
                 }
             });
         });
@@ -958,6 +1069,469 @@
             e.preventDefault();
             alert('Terima kasih telah mengirim pesan! Saya akan segera menghubungi Anda.');
             this.reset();
+        });
+
+        // ============================
+        // PDF GENERATION WITH jsPDF + html2canvas
+        // ============================
+        async function generatePDFWithCanvas() {
+            const { jsPDF } = window.jspdf;
+            const buttons = document.querySelectorAll('.btn-download-pdf, #downloadCVBtn');
+            buttons.forEach(btn => {
+                btn.classList.add('pdf-loading');
+                btn.disabled = true;
+            });
+
+            try {
+                // Get data from website
+                const heroName = document.querySelector('.hero-name')?.innerText || 'CV';
+                const heroTitle = document.querySelector('.hero-title')?.innerText || '';
+                const heroDesc = document.querySelector('.hero-desc')?.innerText || '';
+                
+                // Get profile image
+                const profileImage = document.querySelector('#about img')?.src || '';
+                
+                // Get contact info
+                let phone = '', email = '', location = '';
+                document.querySelectorAll('#contact .card-luxury')[0]?.querySelectorAll('.card-text').forEach((el, idx) => {
+                    if (idx === 0) phone = el.innerText;
+                    else if (idx === 1) email = el.innerText;
+                    else if (idx === 2) location = el.innerText;
+                });
+
+                // Get experiences
+                const experiences = [];
+                document.querySelectorAll('#experience .card-luxury').forEach(card => {
+                    const period = card.querySelector('span')?.innerText || '';
+                    const title = card.querySelector('.card-title')?.innerText?.replace(/^[^\w]+/, '') || '';
+                    const company = card.querySelector('.card-subtitle')?.innerText || '';
+                    const desc = card.querySelector('.card-text')?.innerText || '';
+                    if (title) experiences.push({ period, title, company, desc });
+                });
+
+                // Get skills
+                const skills = [];
+                document.querySelectorAll('.skill-badge').forEach(skill => {
+                    const text = skill.innerText.trim();
+                    if (text && !skills.includes(text)) {
+                        skills.push(text);
+                    }
+                });
+
+                // Get achievements
+                const achievements = [];
+                document.querySelectorAll('.achievement-item').forEach(item => {
+                    const title = item.querySelector('.achievement-title')?.innerText || '';
+                    const desc = item.querySelector('.card-text')?.innerText || '';
+                    if (title) achievements.push({ title, desc });
+                });
+
+                // Get portfolio projects
+                const portfolios = [];
+                document.querySelectorAll('#portfolio .card-luxury').forEach(card => {
+                    const title = card.querySelector('.card-title')?.innerText || '';
+                    const desc = card.querySelector('.card-text')?.innerText || '';
+                    if (title && !title.includes('Portfolio')) {
+                        portfolios.push({ title, desc });
+                    }
+                });
+
+                // Create PDF
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const pageHeight = pdf.internal.pageSize.getHeight();
+
+                // Color scheme
+                const primary = [102, 126, 234];
+                const secondary = [236, 72, 153];
+                const tertiary = [16, 185, 129];
+                const dark = [30, 41, 59];
+                const light = [248, 250, 252];
+                const lightGray = [226, 232, 240];
+
+                // ============================
+                // PAGE 1 - HEADER & PROFILE
+                // ============================
+                
+                // Background
+                pdf.setFillColor(...light);
+                pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+
+                // Gradient-like sidebar
+                pdf.setFillColor(...primary);
+                pdf.rect(0, 0, 55, pageHeight, 'F');
+
+                // Profile image on sidebar
+                if (profileImage) {
+                    try {
+                        const img = await loadImage(profileImage);
+                        pdf.addImage(img, 'JPEG', 8, 12, 39, 39);
+                        
+                        // Image border
+                        pdf.setDrawColor(...light);
+                        pdf.setLineWidth(2);
+                        pdf.rect(8, 12, 39, 39);
+                    } catch (err) {
+                        console.log('Image load error:', err);
+                    }
+                }
+
+                // Name on sidebar
+                pdf.setTextColor(255, 255, 255);
+                pdf.setFont('helvetica', 'bold');
+                pdf.setFontSize(18);
+                const nameLines = pdf.splitTextToSize(heroName, 40);
+                pdf.text(nameLines, 8, 56);
+
+                // Title on sidebar
+                pdf.setFontSize(9);
+                pdf.setFont('helvetica', 'normal');
+                const titleLines = pdf.splitTextToSize(heroTitle, 40);
+                pdf.text(titleLines, 8, 72);
+
+                // Divider
+                pdf.setDrawColor(255, 255, 255);
+                pdf.setLineWidth(0.5);
+                pdf.line(8, 78, 47, 78);
+
+                // Contact Info on sidebar
+                pdf.setFontSize(8);
+                pdf.setFont('helvetica', 'bold');
+                let contactY = 85;
+
+                if (phone) {
+                    pdf.text('Phone:', 8, contactY);
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.setFontSize(7);
+                    const phoneLines = pdf.splitTextToSize(phone, 40);
+                    pdf.text(phoneLines, 8, contactY + 3);
+                    contactY += 8;
+                }
+
+                if (email) {
+                    pdf.setFont('helvetica', 'bold');
+                    pdf.setFontSize(8);
+                    pdf.text('Email:', 8, contactY);
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.setFontSize(7);
+                    const emailLines = pdf.splitTextToSize(email, 40);
+                    pdf.text(emailLines, 8, contactY + 3);
+                    contactY += 8;
+                }
+
+                if (location) {
+                    pdf.setFont('helvetica', 'bold');
+                    pdf.setFontSize(8);
+                    pdf.text('Location:', 8, contactY);
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.setFontSize(7);
+                    const locLines = pdf.splitTextToSize(location, 40);
+                    pdf.text(locLines, 8, contactY + 3);
+                }
+
+                // Skills on sidebar
+                let skillsY = 120;
+                pdf.setFont('helvetica', 'bold');
+                pdf.setFontSize(9);
+                pdf.setTextColor(255, 255, 255);
+                pdf.text('SKILLS', 8, skillsY);
+                skillsY += 6;
+
+                skills.slice(0, 12).forEach(skill => {
+                    pdf.setFillColor(...secondary);
+                    pdf.roundedRect(8, skillsY - 3, 38, 5, 1, 1, 'F');
+                    pdf.setTextColor(...primary);
+                    pdf.setFontSize(7);
+                    pdf.setFont('helvetica', 'normal');
+                    const skillText = pdf.splitTextToSize(skill, 35);
+                    pdf.text(skillText[0], 10, skillsY + 1);
+                    skillsY += 6;
+                    if (skillsY > 260) return;
+                });
+
+                // ============================
+                // MAIN CONTENT AREA
+                // ============================
+                
+                let mainY = 15;
+
+                // Header - CURRICULUM VITAE
+                pdf.setTextColor(...dark);
+                pdf.setFont('helvetica', 'bold');
+                pdf.setFontSize(22);
+                pdf.text('CURRICULUM', 65, mainY);
+                
+                pdf.setTextColor(...secondary);
+                pdf.setFontSize(22);
+                pdf.text('VITAE', 65, mainY + 9);
+
+                // Decorative line
+                pdf.setDrawColor(...primary);
+                pdf.setLineWidth(1);
+                pdf.line(65, mainY + 12, 200, mainY + 12);
+
+                mainY += 18;
+
+                // Professional Summary
+                pdf.setTextColor(...dark);
+                pdf.setFont('helvetica', 'bold');
+                pdf.setFontSize(11);
+                pdf.text('PROFESSIONAL SUMMARY', 65, mainY);
+
+                pdf.setFont('helvetica', 'normal');
+                pdf.setFontSize(9);
+                pdf.setTextColor(80, 80, 80);
+                const summaryLines = pdf.splitTextToSize(heroDesc, 130);
+                pdf.text(summaryLines, 65, mainY + 5);
+                mainY += summaryLines.length * 4 + 8;
+
+                // ============================
+                // EXPERIENCE SECTION
+                // ============================
+                
+                if (mainY > 240) {
+                    pdf.addPage();
+                    pdf.setFillColor(...light);
+                    pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+                    pdf.setFillColor(...primary);
+                    pdf.rect(0, 0, 55, pageHeight, 'F');
+                    mainY = 15;
+                }
+
+                pdf.setTextColor(...dark);
+                pdf.setFont('helvetica', 'bold');
+                pdf.setFontSize(11);
+                pdf.text('WORK EXPERIENCE', 65, mainY);
+                mainY += 6;
+
+                experiences.forEach((exp, idx) => {
+                    if (mainY > 250) {
+                        pdf.addPage();
+                        pdf.setFillColor(...light);
+                        pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+                        pdf.setFillColor(...primary);
+                        pdf.rect(0, 0, 55, pageHeight, 'F');
+                        mainY = 15;
+                    }
+
+                    // Accent line
+                    pdf.setFillColor(...secondary);
+                    pdf.rect(63, mainY - 1, 2, 12, 'F');
+
+                    // Job title
+                    pdf.setTextColor(...dark);
+                    pdf.setFont('helvetica', 'bold');
+                    pdf.setFontSize(10);
+                    pdf.text(exp.title, 68, mainY + 2);
+
+                    // Company and period
+                    pdf.setTextColor(...primary);
+                    pdf.setFont('helvetica', 'italic');
+                    pdf.setFontSize(8);
+                    pdf.text(`${exp.company} | ${exp.period}`, 68, mainY + 6);
+
+                    // Description
+                    pdf.setTextColor(80);
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.setFontSize(8);
+                    const expDesc = pdf.splitTextToSize(exp.desc, 127);
+                    pdf.text(expDesc, 68, mainY + 10);
+
+                    mainY += expDesc.length * 3 + 10;
+                });
+
+                // ============================
+                // ACHIEVEMENTS SECTION
+                // ============================
+                
+                if (achievements.length > 0) {
+                    if (mainY > 240) {
+                        pdf.addPage();
+                        pdf.setFillColor(...light);
+                        pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+                        pdf.setFillColor(...primary);
+                        pdf.rect(0, 0, 55, pageHeight, 'F');
+                        mainY = 15;
+                    }
+
+                    pdf.setTextColor(...dark);
+                    pdf.setFont('helvetica', 'bold');
+                    pdf.setFontSize(11);
+                    pdf.text('ACHIEVEMENTS', 65, mainY);
+                    mainY += 6;
+
+                    achievements.forEach(ach => {
+                        if (mainY > 260) return;
+                        
+                        pdf.setFillColor(...tertiary);
+                        pdf.circle(67, mainY + 1, 1.5, 'F');
+                        
+                        pdf.setTextColor(...dark);
+                        pdf.setFont('helvetica', 'bold');
+                        pdf.setFontSize(9);
+                        pdf.text(ach.title, 71, mainY + 2);
+
+                        pdf.setTextColor(80);
+                        pdf.setFont('helvetica', 'normal');
+                        pdf.setFontSize(8);
+                        const achDesc = pdf.splitTextToSize(ach.desc, 125);
+                        pdf.text(achDesc, 71, mainY + 5);
+
+                        mainY += achDesc.length * 3 + 5;
+                    });
+                }
+
+                // ============================
+                // FOOTER
+                // ============================
+                
+                const totalPages = pdf.internal.getNumberOfPages();
+
+                for (let i = 1; i <= totalPages; i++) {
+                    pdf.setPage(i);
+
+                    // Bottom divider
+                    pdf.setDrawColor(...lightGray);
+                    pdf.setLineWidth(0.5);
+                    pdf.line(0, 280, pageWidth, 280);
+
+                    // Footer text
+                    pdf.setFontSize(7);
+                    pdf.setTextColor(150);
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.text(
+                        `Generated from Interactive CV Website • ${heroName}`,
+                        65,
+                        287
+                    );
+
+                    // Page number
+                    pdf.text(
+                        `Page ${i} / ${totalPages}`,
+                        190,
+                        287
+                    );
+
+                    // Decorative element
+                    pdf.setDrawColor(...primary);
+                    pdf.setLineWidth(2);
+                    pdf.line(0, 0, 5, 0);
+                }
+
+                // Save PDF
+                pdf.save(`CV-${heroName.replace(/\s+/g, '-')}-${new Date().getFullYear()}.pdf`);
+
+                // Show success message
+                showNotification('✓ PDF berhasil diunduh!', 'success');
+
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                showNotification('✗ Gagal membuat PDF. Silakan coba lagi.', 'error');
+            } finally {
+                // Remove loading state
+                buttons.forEach(btn => {
+                    btn.classList.remove('pdf-loading');
+                    btn.disabled = false;
+                });
+            }
+        }
+
+        // ============================
+        // IMAGE LOADER HELPER
+        // ============================
+        function loadImage(url) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.crossOrigin = 'Anonymous';
+
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+
+                    resolve(canvas.toDataURL('image/jpeg'));
+                };
+
+                img.onerror = reject;
+                img.src = url;
+            });
+        }
+
+        // ============================
+        // NOTIFICATION SYSTEM
+        // ============================
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#667eea'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                z-index: 9999;
+                font-weight: 500;
+                animation: slideIn 0.4s ease-out;
+            `;
+            notification.innerText = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.4s ease-out';
+                setTimeout(() => notification.remove(), 400);
+            }, 3000);
+        }
+
+        // Add animation styles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ============================
+        // EVENT LISTENERS
+        // ============================
+        
+        document.getElementById('downloadCVBtn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            generatePDFWithCanvas();
+        });
+
+        document.getElementById('heroDownloadCVBtn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            generatePDFWithCanvas();
+        });
+
+        // Show notification on page load if user has successfully generated PDF before
+        window.addEventListener('load', () => {
+            // You can add additional initialization here if needed
         });
     </script>
 </body>

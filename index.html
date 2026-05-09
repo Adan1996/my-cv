@@ -6,14 +6,20 @@
     <title>Curriculum Vitae - Premium Professional</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1;
-            --secondary: #ec4899;
-            --tertiary: #10b981;
-            --accent: #f59e0b;
-            --light-bg: #f8fafc;
-            --dark-bg: #1e293b;
+            --primary: #00ff41;
+            --secondary: #00ffff;
+            --tertiary: #ff00ff;
+            --accent: #ffff00;
+            --light-bg: #0a0e27;
+            --dark-bg: #050812;
+            --card-bg: #0f1419;
+            --text-primary: #00ff41;
+            --text-secondary: #88dd00;
+            --text-light: #cccccc;
+            --border-color: #00ff41;
         }
 
         * {
@@ -23,15 +29,41 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            color: #1e293b;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #050812 0%, #0a0e27 50%, #0f1419 100%);
+            color: var(--text-light);
+            font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 255, 65, 0.03) 0px,
+                    rgba(0, 255, 65, 0.03) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            pointer-events: none;
+            z-index: 0;
+            animation: scanlines 8s linear infinite;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
         }
 
         /* Parallax Effect */
         .parallax-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, #050812 0%, #0a0e27 50%, #001a00 100%);
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
@@ -51,8 +83,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
             pointer-events: none;
         }
 
@@ -64,33 +96,59 @@
 
         .hero-name {
             font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 800;
-            color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.8), 0 0 40px rgba(0, 255, 65, 0.4);
             margin-bottom: 1rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            font-family: 'JetBrains Mono', monospace;
+            border-right: 3px solid var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(30, end) infinite alternate, blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            0%, 49% {
+                border-right-color: var(--primary);
+                text-shadow: 0 0 20px rgba(0, 255, 65, 0.8), 0 0 40px rgba(0, 255, 65, 0.4);
+            }
+            50%, 100% {
+                border-right-color: transparent;
+                text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            }
         }
 
         .hero-title {
             font-size: clamp(1.2rem, 3vw, 2rem);
-            color: #ffffff;
+            color: var(--secondary);
             margin-bottom: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 1.5px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
         }
 
         .hero-desc {
             font-size: clamp(0.9rem, 2vw, 1.1rem);
-            color: rgba(255,255,255,0.9);
+            color: var(--text-light);
             max-width: 600px;
             margin: 0 auto 2rem;
             line-height: 1.6;
         }
 
         .btn-luxury {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: #ffffff;
-            border: none;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--dark-bg);
+            border: 2px solid var(--primary);
             padding: 0.875rem 2.5rem;
             font-weight: 600;
             border-radius: 25px;
@@ -99,19 +157,21 @@
             text-decoration: none;
             display: inline-block;
             margin: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5), inset 0 0 15px rgba(0, 255, 65, 0.2);
         }
 
         .btn-luxury:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
-            color: #ffffff;
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.8), 0 0 50px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 65, 0.3);
+            color: var(--dark-bg);
             text-decoration: none;
         }
 
         .btn-luxury-outline {
             background: transparent;
-            border: 2px solid #ffffff;
-            color: #ffffff;
+            border: 2px solid var(--primary);
+            color: var(--primary);
             padding: 0.75rem 2.3rem;
             border-radius: 25px;
             transition: all 0.3s ease;
@@ -119,13 +179,16 @@
             text-decoration: none;
             display: inline-block;
             margin: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
         }
 
         .btn-luxury-outline:hover {
-            background: #ffffff;
-            color: #667eea;
+            background: var(--primary);
+            color: var(--dark-bg);
             text-decoration: none;
             transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.8);
         }
 
         /* Parallax Sections */
@@ -145,7 +208,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(5, 8, 18, 0.92);
             pointer-events: none;
         }
 
@@ -156,16 +219,18 @@
 
         .section-title {
             font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--tertiary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 3rem;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             position: relative;
             padding-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .section-title::after {
@@ -176,19 +241,20 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, transparent, #667eea, #ec4899, transparent);
+            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
         }
 
         .card-luxury {
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-            border: 2px solid transparent;
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(15, 20, 25, 0.8) 100%);
+            border: 2px solid var(--primary);
             border-radius: 20px;
             padding: 2rem;
             height: 100%;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2), inset 0 0 20px rgba(0, 255, 65, 0.05);
         }
 
         .card-luxury::before {
@@ -198,15 +264,15 @@
             right: -50%;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.15) 0%, transparent 70%);
             transition: all 0.5s ease;
             pointer-events: none;
         }
 
         .card-luxury:hover {
             transform: translateY(-10px) scale(1.02);
-            border-color: #667eea;
-            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.25);
+            border-color: var(--secondary);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1);
         }
 
         .card-luxury:hover::before {
@@ -215,89 +281,95 @@
         }
 
         .card-title {
-            background: linear-gradient(135deg, #667eea 0%, #ec4899 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .card-subtitle {
-            color: #64748b;
+            color: var(--secondary);
             font-size: 0.95rem;
             margin-bottom: 0.5rem;
             font-weight: 500;
         }
 
         .card-text {
-            color: #475569;
+            color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.6;
         }
 
         .skill-badge {
             display: inline-block;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
-            border: 1.5px solid #667eea;
-            color: #667eea;
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 255, 255, 0.2) 100%);
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
             padding: 0.5rem 1.2rem;
             border-radius: 25px;
             font-size: 0.85rem;
             margin: 0.3rem;
             transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
         }
 
         .skill-badge:hover {
-            background: linear-gradient(135deg, #667eea 0%, #ec4899 100%);
-            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--dark-bg);
             border-color: transparent;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.8);
+            text-shadow: none;
         }
 
         .achievement-item {
             padding: 1.5rem;
-            border-left: 4px solid #667eea;
-            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+            border-left: 4px solid var(--primary);
+            background: linear-gradient(90deg, rgba(0, 255, 65, 0.1) 0%, transparent 100%);
             margin-bottom: 1.5rem;
             border-radius: 10px;
             transition: all 0.3s ease;
         }
 
         .achievement-item:hover {
-            background: linear-gradient(90deg, rgba(102, 126, 234, 0.15) 0%, transparent 100%);
+            background: linear-gradient(90deg, rgba(0, 255, 65, 0.15) 0%, transparent 100%);
             transform: translateX(10px);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
         }
 
         .achievement-title {
-            color: #667eea;
+            color: var(--secondary);
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .navbar-luxury {
-            background: rgba(255, 255, 255, 0.95) !important;
+            background: rgba(5, 8, 18, 0.95) !important;
             backdrop-filter: blur(10px);
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid var(--primary);
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
         }
 
         .navbar-luxury .nav-link {
-            color: #1e293b !important;
+            color: var(--text-light) !important;
             margin: 0 1rem;
             font-weight: 600;
             transition: all 0.3s ease;
             position: relative;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .navbar-luxury .nav-link:hover,
         .navbar-luxury .nav-link.active {
-            color: #667eea !important;
+            color: var(--primary) !important;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
         }
 
         .navbar-luxury .nav-link::after {
@@ -307,9 +379,10 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #667eea, #ec4899);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             transform: scaleX(0);
             transition: transform 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
         }
 
         .navbar-luxury .nav-link:hover::after,
@@ -318,49 +391,55 @@
         }
 
         .logo {
-            background: linear-gradient(135deg, #667eea 0%, #ec4899 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 800;
             font-size: 1.5rem;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-family: 'JetBrains Mono', monospace;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
         }
 
         .social-icons a {
-            color: #667eea;
+            color: var(--primary);
             font-size: 1.3rem;
             margin: 0 0.8rem;
             transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
         }
 
         .social-icons a:hover {
-            color: #ec4899;
+            color: var(--secondary);
             transform: translateY(-5px) scale(1.2);
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
         }
 
         footer {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
-            border-top: none;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, rgba(10, 14, 39, 0.8) 50%, var(--card-bg) 100%);
+            border-top: 2px solid var(--primary);
             padding: 3rem 0 1rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-light);
         }
 
         footer .footer-link {
-            color: #ffffff;
+            color: var(--primary);
             text-decoration: none;
             transition: all 0.3s ease;
         }
 
         footer .footer-link:hover {
-            color: #fbbf24;
+            color: var(--secondary);
             text-decoration: underline;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
         }
 
         .progress-bar-luxury {
-            background: linear-gradient(90deg, #667eea 0%, #ec4899 100%);
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             height: 6px;
             border-radius: 3px;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
         }
 
         .experience-timeline {
@@ -442,9 +521,9 @@
 
         /* PDF Download Button Styling */
         .btn-download-pdf {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
-            color: #ffffff;
-            border: none;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--tertiary) 100%);
+            color: var(--dark-bg);
+            border: 2px solid var(--primary);
             padding: 1rem 2rem;
             font-weight: 600;
             border-radius: 25px;
@@ -455,8 +534,9 @@
             margin: 0.5rem;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.5), inset 0 0 15px rgba(0, 255, 65, 0.2);
             cursor: pointer;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
         }
 
         .btn-download-pdf::before {
@@ -477,8 +557,8 @@
 
         .btn-download-pdf:hover {
             transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.5);
-            color: #ffffff;
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.8), 0 0 20px rgba(0, 255, 255, 0.6), inset 0 0 20px rgba(0, 255, 65, 0.3);
+            color: var(--dark-bg);
             text-decoration: none;
         }
 
@@ -525,8 +605,8 @@
             display: inline-block;
             width: 16px;
             height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
+            border: 2px solid rgba(0, 255, 65, 0.3);
+            border-top-color: var(--primary);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             margin-right: 0.5rem;
@@ -535,17 +615,113 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* Certificate Carousel Styling */
+        .certificate-carousel {
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(90deg, rgba(0, 255, 65, 0.08) 0%, rgba(0, 255, 255, 0.08) 100%);
+            border-radius: 15px;
+            padding: 2rem 0;
+            position: relative;
+            border: 1px solid rgba(0, 255, 65, 0.3);
+        }
+
+        .certificate-track {
+            display: flex;
+            gap: 2rem;
+            padding: 0 2rem;
+            animation: scrollLeft 30s linear infinite;
+            will-change: transform;
+        }
+
+        .certificate-track:hover {
+            animation-play-state: paused;
+        }
+
+        .certificate-item {
+            flex: 0 0 auto;
+            min-width: 200px;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 2px solid rgba(0, 255, 65, 0.5);
+        }
+
+        .certificate-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.6), 0 0 20px rgba(0, 255, 255, 0.4);
+            border-color: var(--secondary);
+        }
+
+        .certificate-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .certificate-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .certificate-item:hover .certificate-overlay {
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 1;
+        }
+
+        .certificate-overlay-text {
+            color: var(--primary);
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+        }
+
+        @keyframes scrollLeft {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .certificate-track.seamless {
+            animation: scrollLeft 30s linear infinite;
+        }
+
+        .certificate-info {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-luxury">
         <div class="container-luxury">
-            <a class="navbar-brand logo" href="#home">
-                <i class="fas fa-crown"></i> CV PREMIUM
-            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span style="color: #667eea;">
+                <span style="color: var(--primary);">
                     <i class="fas fa-bars"></i>
                 </span>
             </button>
@@ -570,7 +746,7 @@
                         <a class="nav-link" href="#contact">Kontak</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="downloadCVBtn" style="color: #667eea !important; font-weight: 700 !important;">
+                        <a class="nav-link" href="#" id="downloadCVBtn" style="color: var(--primary) !important; font-weight: 700 !important;">
                             <i class="fas fa-download"></i> Download CV
                         </a>
                     </li>
@@ -583,7 +759,7 @@
     <section id="home" class="parallax-hero">
         <div class="hero-content">
             <h1 class="hero-name">SYAHDAN MASYHURI</h1>
-            <p class="hero-title">Professional Software Developer & IT DevSecOps</p>
+            <p class="hero-title">Professional Software Developer & DevSecOps</p>
             <p class="hero-desc">
                 Menciptakan pengalaman digital yang luar biasa dengan desain inovatif dan teknologi terkini
             </p>
@@ -604,12 +780,12 @@
             <div class="row align-items-center justify-content-center g-5">
                 <div class="col-lg-4 text-center">
                     <div style="width: 280px; height: 280px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 3px solid #667eea; position: relative; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);">
-                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop" alt="Programming" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="assets/img/profile.jpg" alt="Programming" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-8 text-center">
                     <p class="card-text" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; color: #1e293b;">
-                        Saya adalah profesional berpengalaman dengan passion dalam menciptakan solusi digital yang inovatif dan berdampak. Dengan latar belakang yang kuat dalam desain dan pengembangan, saya berkomitmen untuk memberikan hasil yang melampaui ekspektasi klien dan perusahaan.
+                        Saya adalah seorang profesional Software Developer & DevSecOps berpengalaman dengan passion dalam menciptakan solusi digital yang inovatif dan berdampak. Dengan latar belakang yang kuat dalam desain dan pengembangan, saya berkomitmen untuk memberikan hasil yang melampaui ekspektasi klien dan perusahaan.
                     </p>
                     <div class="row g-4 justify-content-center">
                         <div class="col-sm-6">
@@ -722,11 +898,11 @@
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-5">
                     <div class="card-luxury">
-                        <div style="width: 100%; height: 180px; background: linear-gradient(135deg, #667eea 0%, #ec4899 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 3.5rem; color: #ffffff;">
-                            <i class="fas fa-laptop-code"></i>
+                        <div style="width: 100%; height: 180px; border-radius: 15px; overflow: hidden; margin-bottom: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=400&h=300&fit=crop" alt="Development Tools" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <h4 class="card-title">
-                            <i class="fas fa-code"></i> Technical Skills
+                            <i class="fas fa-code"></i> Development Tools
                         </h4>
                         <div style="margin-top: 1.5rem;">
                             <span class="skill-badge">HTML/CSS</span>
@@ -734,8 +910,11 @@
                             <span class="skill-badge">React</span>
                             <span class="skill-badge">Bootstrap</span>
                             <span class="skill-badge">Python</span>
+                            <span class="skill-badge">PHP</span>
+                            <span class="skill-badge">Golang</span>
+                            <span class="skill-badge">Java</span>
                             <span class="skill-badge">SQL</span>
-                            <span class="skill-badge">Node.js</span>
+                            <span class="skill-badge">MongoDB</span>
                             <span class="skill-badge">Git</span>
                         </div>
                     </div>
@@ -743,19 +922,20 @@
                 <div class="col-lg-5">
                     <div class="card-luxury">
                         <div style="width: 100%; height: 180px; border-radius: 15px; overflow: hidden; margin-bottom: 1.5rem;">
-                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" alt="Design Skills" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="https://plus.unsplash.com/premium_photo-1661878265739-da90bc1af051?w=400&h=300&fit=crop" alt="Design Skills" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <h4 class="card-title">
-                            <i class="fas fa-paint-brush"></i> DevOps Tools
+                            <i class="fa-solid fa-infinity"></i> DevOps Tools
                         </h4>
                         <div style="margin-top: 1.5rem;">
                             <span class="skill-badge">Docker</span>
                             <span class="skill-badge">Kubernetes</span>
-                            <span class="skill-badge">Vagrant</span>
                             <span class="skill-badge">Jenkins</span>
                             <span class="skill-badge">Ansible</span>
                             <span class="skill-badge">AWS</span>
                             <span class="skill-badge">Alibaba Cloud</span>
+                            <span class="skill-badge">Linux</span>
+                            <span class="skill-badge">Checkmarx</span>
                         </div>
                     </div>
                 </div>
@@ -767,7 +947,25 @@
                         <div style="margin-top: 1.5rem;">
                             <div style="margin-bottom: 1.2rem;">
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                                    <span class="card-text">Web Design</span>
+                                    <span class="card-text">Development</span>
+                                    <span style="color: #667eea;">95%</span>
+                                </div>
+                                <div style="background: rgba(102, 126, 234, 0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+                                    <div class="progress-bar-luxury" style="width: 95%; height: 100%;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1.2rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span class="card-text">Technical Leadership</span>
+                                    <span style="color: #667eea;">70%</span>
+                                </div>
+                                <div style="background: rgba(102, 126, 234, 0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+                                    <div class="progress-bar-luxury" style="width: 70%; height: 100%;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1.2rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span class="card-text">Cross-functional Collaboration</span>
                                     <span style="color: #667eea;">90%</span>
                                 </div>
                                 <div style="background: rgba(102, 126, 234, 0.1); height: 6px; border-radius: 3px; overflow: hidden;">
@@ -776,39 +974,39 @@
                             </div>
                             <div style="margin-bottom: 1.2rem;">
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                                    <span class="card-text">Development</span>
-                                    <span style="color: #667eea;">85%</span>
+                                    <span class="card-text">Communication & Consulting</span>
+                                    <span style="color: #667eea;">80%</span>
                                 </div>
                                 <div style="background: rgba(102, 126, 234, 0.1); height: 6px; border-radius: 3px; overflow: hidden;">
-                                    <div class="progress-bar-luxury" style="width: 85%; height: 100%;"></div>
+                                    <div class="progress-bar-luxury" style="width: 80%; height: 100%;"></div>
                                 </div>
                             </div>
                             <div>
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                                     <span class="card-text">Problem Solving</span>
-                                    <span style="color: #667eea;">95%</span>
+                                    <span style="color: #667eea;">90%</span>
                                 </div>
                                 <div style="background: rgba(102, 126, 234, 0.1); height: 6px; border-radius: 3px; overflow: hidden;">
-                                    <div class="progress-bar-luxury" style="width: 95%; height: 100%;"></div>
+                                    <div class="progress-bar-luxury" style="width: 90%; height: 100%;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+            </div>
+            <div class="row g-4 justify-content-center" style="margin-top: 1rem;">
+                <div class="col-lg-12">
                     <div class="card-luxury">
                         <h4 class="card-title">
-                            <i class="fas fa-star"></i> Pencapaian
+                            <i class="fas fa-certificate"></i> Sertifikat & Penghargaan
                         </h4>
-                        <div style="margin-top: 1rem;">
-                            <div class="achievement-item">
-                                <div class="achievement-title">Award 2023</div>
-                                <p class="card-text" style="font-size: 0.9rem; margin: 0;">Best Digital Design</p>
+                        <div class="certificate-carousel">
+                            <div class="certificate-track seamless" id="certificateTrack">
+                                <!-- Certificate items will be loaded here -->
                             </div>
-                            <div class="achievement-item">
-                                <div class="achievement-title">Certified Professional</div>
-                                <p class="card-text" style="font-size: 0.9rem; margin: 0;">UX Design Certificate</p>
-                            </div>
+                        </div>
+                        <div class="certificate-info">
+                            <i class="fas fa-mouse"></i> Hover untuk melihat detail | Scroll otomatis ke kiri
                         </div>
                     </div>
                 </div>
@@ -824,57 +1022,121 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card-luxury">
                         <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="Project Alpha" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="https://plus.unsplash.com/premium_photo-1733328013343-e5ee77acaf05?w=400&h=300&fit=crop" alt="Project Alpha" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
-                        <h4 class="card-title">Project Alpha</h4>
+                        <h4 class="card-title">HRD System</h4>
                         <p class="card-text">
-                            Website e-commerce dengan fitur advanced dan interface yang stunning
-                        </p>
-                        <p style="color: #667eea; font-size: 0.9rem; margin-top: 1rem;">
-                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">React</span>
-                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">Node.js</span>
+                            Digunakan untuk mengelola data dan proses sumber daya manusia secara digital, seperti absensi, penggajian, cuti, rekrutmen, dan penilaian karyawan. Sistem ini membantu perusahaan meningkatkan efisiensi administrasi serta mempermudah monitoring dan pengelolaan karyawan.
                         </p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="card-luxury">
                         <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                            <img src="https://images.unsplash.com/photo-1512941691920-25bda36dc643?w=400&h=300&fit=crop" alt="Project Beta" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop" alt="Project Beta" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
-                        <h4 class="card-title">Project Beta</h4>
+                        <h4 class="card-title">Letter Application Manager</h4>
                         <p class="card-text">
-                            Aplikasi mobile untuk manajemen finansial dengan UX yang intuitif
-                        </p>
-                        <p style="color: #667eea; font-size: 0.9rem; margin-top: 1rem;">
-                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">Flutter</span>
-                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">Firebase</span>
+                            Aplikasi ini digunakan untuk mengelola proses surat menyurat dan dokumen bisnis secara digital, seperti invoice, surat resmi, pengajuan, dan arsip dokumen. Sistem ini membantu mempercepat distribusi, pelacakan, serta penyimpanan dokumen agar lebih terorganisir dan efisien.
                         </p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="card-luxury">
                         <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" alt="Project Gamma" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="https://images.unsplash.com/photo-1649424221016-58857288854e?w=400&h=300&fit=crop" alt="Project Gamma" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
-                        <h4 class="card-title">Project Gamma</h4>
+                        <h4 class="card-title">Point of Sales</h4>
                         <p class="card-text">
-                            Redesign brand identity dengan konsep modern dan elegan
-                        </p>
-                        <p style="color: #667eea; font-size: 0.9rem; margin-top: 1rem;">
-                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">Branding</span>
-                            <span class="skill-badge" style="font-size: 0.8rem; border-color: #667eea; color: #667eea;">Design</span>
+                            Aplikasi ini digunakan untuk mengelola transaksi penjualan, pembayaran, stok barang, dan laporan penjualan secara real-time. Sistem ini membantu bisnis mempercepat proses kasir serta mempermudah monitoring operasional dan inventaris.
                         </p>
                     </div>
                 </div>
-            </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1758873269108-7c03a92f7586?w=400&h=300&fit=crop" alt="Project Alpha" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
-                        <h4 class="card-title">Project Gamma</h4>
+                        <h4 class="card-title">Application Management Trainer</h4>
                         <p class="card-text">
-                            Redesign brand identity dengan konsep modern dan elegan
+                            Aplikasi ini digunakan untuk mengelola data dan aktivitas pelatihan secara digital, seperti jadwal training, peserta, materi, hingga evaluasi pelatihan. Sistem ini membantu proses administrasi training menjadi lebih terstruktur, efisien, dan mudah dipantau.
                         </p>
-                        <p style="color: #667eea; font-size: 0.9rem; margin-top: 1rem;">
-                            <span class="skill-badge" style="font-size: 0.8rem;">Branding</span>
-                            <span class="skill-badge" style="font-size: 0.8rem;">Design</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop" alt="Project Beta" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">Hacktrace.id</h4>
+                        <p class="card-text">
+                            Website ini berguna untuk pembelajaran dan konsultasi cybersecurity yang menyediakan pelatihan, lab praktik, serta layanan keamanan siber untuk individu maupun perusahaan. Platform ini membantu pengguna meningkatkan kemampuan di bidang ethical hacking, penetration testing, digital forensics, dan keamanan aplikasi secara hands-on.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://plus.unsplash.com/premium_photo-1661764393655-1dbffee8c0ce?w=400&h=300&fit=crop" alt="Project Gamma" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">Hacktrace Range</h4>
+                        <p class="card-text">
+                            Website ini berguna untuk platform lab dan simulasi cybersecurity yang menyediakan environment praktik hands-on untuk penetration testing, Capture The Flag (CTF), dan pelatihan keamanan siber berbasis skenario nyata. Platform ini membantu pengguna meningkatkan kemampuan offensive dan defensive security melalui tantangan interaktif dan gamifikasi.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1590065707046-4fde65275b2e?w=400&h=300&fit=crop" alt="Project Alpha" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">Vulnerable Management System</h4>
+                        <p class="card-text">
+                            Aplikasi ini digunakan untuk mengelola, memantau, dan menganalisis kerentanan keamanan pada sistem atau aplikasi secara terpusat. Sistem ini membantu tim keamanan dalam proses identifikasi, prioritas perbaikan, tracking remediation, dan pelaporan risiko keamanan.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://plus.unsplash.com/premium_photo-1661281307045-edb4d54e313f?w=400&h=300&fit=crop" alt="Project Beta" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">Risk Management System</h4>
+                        <p class="card-text">
+                            Aplikasi ini digunakan untuk mengidentifikasi, menganalisis, memantau, dan mengelola risiko operasional maupun keamanan dalam suatu organisasi. Sistem ini membantu perusahaan melakukan mitigasi risiko secara terstruktur serta meningkatkan kepatuhan dan pengambilan keputusan.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://plus.unsplash.com/premium_photo-1684761949804-fd8eb9a5b6cc?w=400&h=300&fit=crop" alt="Project Gamma" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">Chat App & File Storage</h4>
+                        <p class="card-text">
+                            Aplikasi ini digunakan untuk mendukung komunikasi tim secara real-time serta penyimpanan dan berbagi file secara terpusat. Sistem ini membantu meningkatkan kolaborasi, keamanan data, dan kemudahan akses dokumen dalam satu platform.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=400&h=300&fit=crop" alt="Project Gamma" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">Web Article Crawler System</h4>
+                        <p class="card-text">
+                            Aplikasi ini digunakan untuk mengumpulkan, memantau, dan mengindeks artikel atau informasi dari berbagai website secara otomatis. Sistem ini membantu proses agregasi data, monitoring konten, analisis tren, dan pengelolaan informasi menjadi lebih cepat dan efisien.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-luxury">
+                        <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <img src="https://lapakkampus.com/assets/img/logo_navbar.png" alt="Project Gamma" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 class="card-title">Lapak Kampus Dot Com</h4>
+                        <p class="card-text">
+                            Aplikasi ini adalah platform marketplace dan layanan digital yang membantu mahasiswa serta civitas akademika dalam memenuhi kebutuhan kampus, seperti jual beli produk, layanan akademik, dan informasi pendidikan. Platform ini mempermudah transaksi dan kolaborasi dalam lingkungan kampus secara online.
                         </p>
                     </div>
                 </div>
@@ -897,34 +1159,25 @@
                                 <p style="color: #667eea; font-weight: 600; margin-bottom: 0.5rem;">
                                     <i class="fas fa-phone"></i> Telepon
                                 </p>
-                                <p class="card-text">+62 812 3456 7890</p>
+                                <p class="card-text">+62 815 1446 8901</p>
                             </div>
                             <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(102, 126, 234, 0.2);">
                                 <p style="color: #667eea; font-weight: 600; margin-bottom: 0.5rem;">
                                     <i class="fas fa-envelope"></i> Email
                                 </p>
-                                <p class="card-text">nama@email.com</p>
+                                <p class="card-text">syahdanmasyhuri@gmail.com</p>
                             </div>
                             <div style="margin-bottom: 2rem;">
                                 <p style="color: #667eea; font-weight: 600; margin-bottom: 0.5rem;">
                                     <i class="fas fa-map-marker-alt"></i> Lokasi
                                 </p>
-                                <p class="card-text">Jakarta, Indonesia</p>
+                                <p class="card-text">Depok, Jawa Barat, Indonesia</p>
                             </div>
                             <div style="margin-top: 2rem;">
                                 <p style="color: #667eea; font-weight: 600; margin-bottom: 1rem;">Ikuti Saya</p>
                                 <div class="social-icons">
-                                    <a href="#" title="LinkedIn">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="#" title="GitHub">
+                                    <a href="https://github.com/Adan1996" target="_blank" title="GitHub">
                                         <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="#" title="Twitter">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="#" title="Instagram">
-                                        <i class="fab fa-instagram"></i>
                                     </a>
                                 </div>
                             </div>
@@ -962,7 +1215,7 @@
             <div class="row g-4 mb-4">
                 <div class="col-md-4">
                     <h5 style="color: #ffffff; margin-bottom: 1.5rem;">
-                        <i class="fas fa-code"></i> CV COLORFUL
+                        <i class="fas fa-code"></i> CV SYAHDAN MASYHURI
                     </h5>
                     <p class="card-text" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
                         Profesional berpengalaman dalam menciptakan solusi digital yang inovatif dan modern.
@@ -980,17 +1233,8 @@
                 <div class="col-md-4">
                     <h5 style="color: #667eea; margin-bottom: 1.5rem;">Follow Me</h5>
                     <div class="social-icons">
-                        <a href="#">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#">
+                        <a href="https://github.com/Adan1996" target="_blank" title="GitHub">
                             <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fab fa-instagram"></i>
                         </a>
                     </div>
                 </div>
@@ -998,7 +1242,7 @@
             <hr style="border-color: rgba(102, 126, 234, 0.2);">
             <div class="text-center py-3">
                 <p style="margin: 0; color: #888; font-size: 0.9rem;">
-                    &copy; 2024 CV Premium. All rights reserved. Designed with <span style="color: #667eea;">♥</span> for You.
+                    &copy; 2026 CV Syahdan Masyhuri. All rights reserved. Designed with <span style="color: #667eea;">♥</span> for You.
                 </p>
             </div>
         </div>
@@ -1532,7 +1776,61 @@
         // Show notification on page load if user has successfully generated PDF before
         window.addEventListener('load', () => {
             // You can add additional initialization here if needed
+            initializeCertificateCarousel();
         });
+
+        // ============================
+        // CERTIFICATE CAROUSEL
+        // ============================
+        async function initializeCertificateCarousel() {
+            const certificateTrack = document.getElementById('certificateTrack');
+            
+            // Certificate data - nama file dari folder assets/img
+            const certificates = [
+                { name: 'Certificate Checkmarx', file: 'assets/img/certificate_checkmarx.png' },
+                { name: 'Certificate Dicoding', file: 'assets/img/certificate_dicoding.png' },
+                { name: 'Certificate Full Stack Designer', file: 'assets/img/certificate_fullstackdesigner.png' },
+                { name: 'Certificate Udemy', file: 'assets/img/certificate_udemy.png' },
+                { name: 'Certificate Alibaba Cloud', file: 'assets/img/certificate_alibabacloud.jpg' },
+            ];
+
+            // Check which images exist and create HTML
+            const certificateHTML = [];
+            
+            for (const cert of certificates) {
+                const img = new Image();
+                img.onerror = () => {
+                    console.log(`Image not found: ${cert.file}`);
+                };
+                img.onload = () => {
+                    console.log(`Image loaded: ${cert.file}`);
+                };
+                
+                const certificateDiv = document.createElement('div');
+                certificateDiv.className = 'certificate-item';
+                certificateDiv.innerHTML = `
+                    <img src="${cert.file}" alt="${cert.name}" loading="lazy">
+                    <div class="certificate-overlay">
+                        <div class="certificate-overlay-text">${cert.name}</div>
+                    </div>
+                `;
+                certificateTrack.appendChild(certificateDiv);
+                img.src = cert.file;
+            }
+
+            // Duplicate for seamless loop
+            const items = certificateTrack.querySelectorAll('.certificate-item');
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                certificateTrack.appendChild(clone);
+            });
+
+            // Smooth carousel with mouse wheel support
+            certificateTrack.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                certificateTrack.scrollLeft += e.deltaY;
+            });
+        }
     </script>
 </body>
 </html>

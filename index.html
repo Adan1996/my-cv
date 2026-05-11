@@ -812,6 +812,26 @@
     </section>
 
     <!-- Experience Section with Parallax -->
+
+    <!-- Education Section -->
+    <section id="education" class="parallax-section" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 50%, #11998e 100%);">
+        <div class="container-luxury parallax-content">
+            <h2 class="section-title">Pendidikan</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card-luxury fade-in">
+                        <div style="margin-bottom: 1rem;">
+                            <span style="color: #667eea; font-weight: 600; font-size: 0.9rem;">2016</span>
+                        </div>
+                        <h4 class="card-title">Teknik Komputer</h4>
+                        <p class="card-subtitle">Politeknik Tugu Jakarta</p>
+                        <p class="card-text">Diploma III (D3)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="experience" class="parallax-section" style="background: linear-gradient(135deg, #ec4899 0%, #f093fb 50%, #667eea 100%);">
         <div class="container-luxury parallax-content">
             <h2 class="section-title">Pengalaman Kerja</h2>
@@ -1369,8 +1389,16 @@
                     const desc = item.querySelector('.card-text')?.innerText || '';
                     if (title) achievements.push({ title, desc });
                 });
+                // Get education
+                const educations = [];
+                document.querySelectorAll('#education .card-luxury').forEach(card => {
+                    const period = card.querySelector('span')?.innerText || '';
+                    const title = card.querySelector('.card-title')?.innerText || '';
+                    const school = card.querySelector('.card-subtitle')?.innerText || '';
+                    const degree = card.querySelectorAll('.card-text')[0]?.innerText || '';
+                    if (title) educations.push({ period, title, school, degree });
+                });
 
-                // Get portfolio projects
                 const portfolios = [];
                 document.querySelectorAll('#portfolio .card-luxury').forEach(card => {
                     const title = card.querySelector('.card-title')?.innerText || '';
@@ -1680,6 +1708,59 @@
 
                     mainY += desc.length * 4 + 16;
                 });
+
+                // ============================
+                // EDUCATION
+                // ============================
+
+                if (educations.length > 0) {
+                    if (mainY > 200) {
+                        pdf.addPage();
+                        pdf.setFillColor(248, 250, 252);
+                        pdf.rect(0, 0, pageWidth, pageHeight, "F");
+                        pdf.setFillColor(15, 23, 42);
+                        pdf.rect(0, 0, 60, pageHeight, "F");
+                        mainY = 20;
+                    }
+
+                    pdf.setFont("helvetica", "bold");
+                    pdf.setFontSize(11);
+                    pdf.setTextColor(15, 23, 42);
+                    pdf.text("EDUCATION", 70, mainY);
+
+                    mainY += 8;
+
+                    educations.forEach(edu => {
+                        if (mainY > 250) {
+                            pdf.addPage();
+                            pdf.setFillColor(248, 250, 252);
+                            pdf.rect(0, 0, pageWidth, pageHeight, "F");
+                            pdf.setFillColor(15, 23, 42);
+                            pdf.rect(0, 0, 60, pageHeight, "F");
+                            mainY = 20;
+                        }
+
+                        pdf.setFillColor(99, 102, 241);
+                        pdf.circle(72, mainY, 2, "F");
+
+                        pdf.setDrawColor(203, 213, 225);
+                        pdf.line(72, mainY + 2, 72, mainY + 10);
+
+                        pdf.setFont("helvetica", "bold");
+                        pdf.setFontSize(10);
+                        pdf.setTextColor(15, 23, 42);
+                        pdf.text(edu.title, 78, mainY + 1);
+
+                        pdf.setFont("helvetica", "italic");
+                        pdf.setFontSize(8);
+                        pdf.setTextColor(99, 102, 241);
+                        pdf.text(edu.school + " - " + edu.degree + " - " + edu.period, 78, mainY + 6);
+
+                        mainY += 20;
+                    });
+
+                    mainY += 5;
+                }
 
                 // ============================
                 // CERTIFICATES (IMAGE GRID FIX ALIGN)

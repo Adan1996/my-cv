@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -715,6 +715,32 @@
             font-weight: 500;
             text-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
         }
+
+        /* Tech Stack Styling */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            color: #667eea;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #667eea;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tech-badge:hover {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.6);
+        }
     </style>
 </head>
 <body>
@@ -736,6 +762,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#experience">Pengalaman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Edukasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#skills">Keahlian</a>
@@ -846,6 +875,16 @@
                         <p class="card-text">
                             Mengintegrasikan keamanan (security) ke dalam seluruh siklus pengembangan dan operasional perangkat lunak, mulai dari desain, CI/CD pipeline, hingga deployment di lingkungan produksi. Serta memberikan rekomendasi, audit, dan implementasi praktik keamanan untuk memastikan sistem tetap aman, patuh standar, dan tahan terhadap ancaman siber tanpa menghambat kecepatan pengembangan.
                         </p>
+                        <div style="margin-top: 1.5rem;">
+                            <p style="color: #667eea; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.8rem;">Tech Stack:</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Docker</span>
+                                <span class="tech-badge">Jenkins</span>
+                                <span class="tech-badge">Kubernetes</span>
+                                <span class="tech-badge">AWS</span>
+                                <span class="tech-badge">Checkmarx</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -858,6 +897,16 @@
                         <p class="card-text">
                             Membangun dan memelihara sistem server-side yang mendukung gameplay, seperti manajemen data pemain, matchmaking, leaderboard, dan sinkronisasi real-time. Serta memastikan performa, keamanan, dan skalabilitas backend agar game dapat berjalan stabil meskipun digunakan oleh banyak pemain secara bersamaan.
                         </p>
+                        <div style="margin-top: 1.5rem;">
+                            <p style="color: #667eea; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.8rem;">Tech Stack:</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Go</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Redis</span>
+                                <span class="tech-badge">Docker</span>
+                                <span class="tech-badge">gRPC</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -870,6 +919,16 @@
                         <p class="card-text">
                             Merancang dan mengembangkan sistem perangkat lunak yang kompleks, menulis kode berkualitas tinggi, serta memastikan arsitektur aplikasi scalable, efisien, dan maintainable. Juga membimbing developer lain, melakukan code review, dan berkontribusi dalam pengambilan keputusan teknis untuk mendukung keberhasilan proyek.
                         </p>
+                        <div style="margin-top: 1.5rem;">
+                            <p style="color: #667eea; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.8rem;">Tech Stack:</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">PHP</span>
+                                <span class="tech-badge">Laravel</span>
+                                <span class="tech-badge">MySQL</span>
+                                <span class="tech-badge">Vue.js</span>
+                                <span class="tech-badge">Docker</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -882,6 +941,16 @@
                         <p class="card-text">
                             Menjembatani pengembangan software dan operasional IT dengan mengotomatisasi proses build, testing, deployment, serta memastikan sistem berjalan stabil, scalable, dan aman di lingkungan produksi. Juga mengelola infrastruktur (sering berbasis cloud), monitoring, CI/CD pipeline, serta menangani incident untuk menjaga reliabilitas layanan.
                         </p>
+                        <div style="margin-top: 1.5rem;">
+                            <p style="color: #667eea; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.8rem;">Tech Stack:</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Docker</span>
+                                <span class="tech-badge">Kubernetes</span>
+                                <span class="tech-badge">Jenkins</span>
+                                <span class="tech-badge">AWS</span>
+                                <span class="tech-badge">Terraform</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -894,6 +963,16 @@
                         <p class="card-text">
                             Memimpin tim RnD dalam merancang, mengembangkan, dan memastikan kualitas aplikasi atau sistem yang dibangun. Dan juga mengarahkan teknis, melakukan code review, serta berkoordinasi dengan tim lain untuk memastikan proyek berjalan sesuai target.
                         </p>
+                        <div style="margin-top: 1.5rem;">
+                            <p style="color: #667eea; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.8rem;">Tech Stack:</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">JavaScript</span>
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">MongoDB</span>
+                                <span class="tech-badge">AWS</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -906,6 +985,16 @@
                         <p class="card-text">
                             Bertanggung jawab merancang, membangun, dan memelihara sistem teknologi informasi seperti jaringan, server, dan aplikasi agar berjalan stabil dan aman. Serta menangani troubleshooting serta mengoptimalkan performa sistem untuk mendukung kebutuhan operasional perusahaan.
                         </p>
+                        <div style="margin-top: 1.5rem;">
+                            <p style="color: #667eea; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.8rem;">Tech Stack:</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Linux</span>
+                                <span class="tech-badge">Windows Server</span>
+                                <span class="tech-badge">Networking</span>
+                                <span class="tech-badge">Database Admin</span>
+                                <span class="tech-badge">Virtualization</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1370,7 +1459,12 @@
                     const title = card.querySelector('.card-title')?.innerText?.replace(/^[^\w]+/, '') || '';
                     const company = card.querySelector('.card-subtitle')?.innerText || '';
                     const desc = card.querySelector('.card-text')?.innerText || '';
-                    if (title) experiences.push({ period, title, company, desc });
+                    
+                    // Extract tech stack
+                    const techBadges = card.querySelectorAll('.tech-badge');
+                    const techStack = Array.from(techBadges).map(badge => badge.innerText.trim());
+                    
+                    if (title) experiences.push({ period, title, company, desc, techStack });
                 });
 
                 // Get skills
@@ -1649,6 +1743,59 @@
                 mainY += summary.length * 4 + 10;
 
                 // ============================
+                // EDUCATION (MOVED HERE - AFTER SUMMARY)
+                // ============================
+
+                if (educations.length > 0) {
+                    if (mainY > 200) {
+                        pdf.addPage();
+                        pdf.setFillColor(248, 250, 252);
+                        pdf.rect(0, 0, pageWidth, pageHeight, "F");
+                        pdf.setFillColor(15, 23, 42);
+                        pdf.rect(0, 0, 60, pageHeight, "F");
+                        mainY = 20;
+                    }
+
+                    pdf.setFont("helvetica", "bold");
+                    pdf.setFontSize(11);
+                    pdf.setTextColor(15, 23, 42);
+                    pdf.text("EDUCATION", 70, mainY);
+
+                    mainY += 8;
+
+                    educations.forEach(edu => {
+                        if (mainY > 250) {
+                            pdf.addPage();
+                            pdf.setFillColor(248, 250, 252);
+                            pdf.rect(0, 0, pageWidth, pageHeight, "F");
+                            pdf.setFillColor(15, 23, 42);
+                            pdf.rect(0, 0, 60, pageHeight, "F");
+                            mainY = 20;
+                        }
+
+                        pdf.setFillColor(99, 102, 241);
+                        pdf.circle(72, mainY, 2, "F");
+
+                        pdf.setDrawColor(203, 213, 225);
+                        pdf.line(72, mainY + 2, 72, mainY + 10);
+
+                        pdf.setFont("helvetica", "bold");
+                        pdf.setFontSize(10);
+                        pdf.setTextColor(15, 23, 42);
+                        pdf.text(edu.title, 78, mainY + 1);
+
+                        pdf.setFont("helvetica", "italic");
+                        pdf.setFontSize(8);
+                        pdf.setTextColor(99, 102, 241);
+                        pdf.text(edu.school + " - " + edu.degree + " - " + edu.period, 78, mainY + 6);
+
+                        mainY += 20;
+                    });
+
+                    mainY += 5;
+                }
+
+                // ============================
                 // EXPERIENCE
                 // ============================
 
@@ -1706,61 +1853,28 @@
 
                     pdf.text(desc, 78, mainY + 11);
 
-                    mainY += desc.length * 4 + 16;
-                });
+                    let techY = mainY + 11 + desc.length * 4;
 
-                // ============================
-                // EDUCATION
-                // ============================
-
-                if (educations.length > 0) {
-                    if (mainY > 200) {
-                        pdf.addPage();
-                        pdf.setFillColor(248, 250, 252);
-                        pdf.rect(0, 0, pageWidth, pageHeight, "F");
-                        pdf.setFillColor(15, 23, 42);
-                        pdf.rect(0, 0, 60, pageHeight, "F");
-                        mainY = 20;
-                    }
-
-                    pdf.setFont("helvetica", "bold");
-                    pdf.setFontSize(11);
-                    pdf.setTextColor(15, 23, 42);
-                    pdf.text("EDUCATION", 70, mainY);
-
-                    mainY += 8;
-
-                    educations.forEach(edu => {
-                        if (mainY > 250) {
-                            pdf.addPage();
-                            pdf.setFillColor(248, 250, 252);
-                            pdf.rect(0, 0, pageWidth, pageHeight, "F");
-                            pdf.setFillColor(15, 23, 42);
-                            pdf.rect(0, 0, 60, pageHeight, "F");
-                            mainY = 20;
-                        }
-
-                        pdf.setFillColor(99, 102, 241);
-                        pdf.circle(72, mainY, 2, "F");
-
-                        pdf.setDrawColor(203, 213, 225);
-                        pdf.line(72, mainY + 2, 72, mainY + 10);
-
-                        pdf.setFont("helvetica", "bold");
-                        pdf.setFontSize(10);
-                        pdf.setTextColor(15, 23, 42);
-                        pdf.text(edu.title, 78, mainY + 1);
-
-                        pdf.setFont("helvetica", "italic");
-                        pdf.setFontSize(8);
+                    // Tech Stack
+                    if (exp.techStack && exp.techStack.length > 0) {
+                        pdf.setFont('helvetica', 'bold');
+                        pdf.setFontSize(7);
                         pdf.setTextColor(99, 102, 241);
-                        pdf.text(edu.school + " - " + edu.degree + " - " + edu.period, 78, mainY + 6);
+                        
+                        pdf.text('Tech: ', 78, techY);
 
-                        mainY += 20;
-                    });
+                        const techText = exp.techStack.join(', ');
+                        const techLines = pdf.splitTextToSize(techText, 110);
+                        
+                        pdf.setFont('helvetica', 'normal');
+                        pdf.text(techLines, 90, techY);
 
-                    mainY += 5;
-                }
+                        techY += techLines.length * 3 + 2;
+                        mainY += desc.length * 4 + techLines.length * 3 + 16;
+                    } else {
+                        mainY += desc.length * 4 + 16;
+                    }
+                });
 
                 // ============================
                 // CERTIFICATES (IMAGE GRID FIX ALIGN)
